@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/*ESTILOS DE LA BARRA DE NAVEGACIÓN*/
+.bg-primary {
+    background-color: #2596ff !important;
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar-brand img{
+    width: 160px;
+    height: 80px;
+}
+
+.navbar-nav > li{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.nav-link:hover{
+    color: black !important;
+}
+
+.ml-md-auto, .mx-md-auto {
+    margin-left: auto !important;
+    margin-right: 10em;
+    background-color: red;
+}
+
+.imagenYtexto{
+    width: 80px !important;
+    text-align: justify;
+}
+
+#cerrarsesion{
+    width: 100px !important;
+    display: block;
+    margin: 0 auto;
+}
+
+.txtCerrarSesion{
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+
+#nuevaEvaluacion{
+    font-size: 1.5em;
+    color: black !important;
+}
+
+#nuevaEvaluacion:hover{
+    color: white !important;
+}
+
+/*RESTO DE ESTILOS*/
+body{
+    font-size: 1.2em;
+    font-family:sans-serif;
+}
+
+
+/*ESTILOS DEL PIE DE PÁGINA*/
+footer {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.error{
+	font-size:0.8em !important;
+	text-align: center;
+	margin-top: 10px;
+  	clear:both;
+  	border: 1px solid red;
+  	padding:5px;
+  	padding-bottom: 7px;
+	color: #C02C11;
+}

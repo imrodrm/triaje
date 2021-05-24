@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+.todo{
+    margin: auto; /*CENTRAMOS EL FORM*/
+    
+}
+
+#nuevaEvaluacionForm{
+    background-color: #e1f4ff;
+    border: 1px solid #6ac8ff;
+}
+
+legend{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+}
+
+
+.required:after {
+    content:" *";
+    color: red;
+}
+
+textarea{
+    width: 100%;
+    
+}
+
+.datos{
+    display: flex;
+}
+
+.cincuenta{
+    width: 50%;
+}
+
+.tercio{
+    width: 25%;
+}
+
+
+.short{
+    width: 90px;
+}
+
+.btnAniadir{
+    height: 36px;
+}
+
+label{
+  justify-content: flex-end;
+  text-align: right;
+}
+@media screen and (min-width:1182px){
+    .bigLBL {
+        display: inline-block;
+        width: 11em;
+    }
+      
+    .lblTexto{
+          display: inline-block;
+          width: 8em;
+    }
+
+}
+@media screen and (max-width:766px){
+    .bigLBL {
+        display: inline-block;
+        
+    }
+      
+    .lblTexto{
+          display: inline-block;
+          
+    }
+}
+
+input[type=text] {
+  height: 27px;
+  margin-left: 10px;
+  border: 0;
+}
+
+select{
+    appearance: none;
+    height: 27px;
+    flex: 0 0 200px;
+    margin-left: 11px;
+    width: 90px;
+    border: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+}
+
+.divBoton{
+    text-align: right;
+}
+
+.btnAniadir{
+    border-width: 0px;
+    background-color: white;
+}
+
+.btnAniadir:hover{
+    background-color: #2596ff;
+}
+
+.modal{
+	display: none; /* Hidden by default */
+  	position: fixed; /* Stay in place */
+  	z-index: 1; /* Sit on top */
+  	padding-top: 100px; /* Location of the box */
+  	left: 0;
+  	top: 0;
+  	width: 100%; /* Full width */
+  	height: 100%; /* Full height */
+  	overflow: auto; /* Enable scroll if needed */
+  	background-color: rgb(0,0,0); /* Fallback color */
+  	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#enfermedades{
+	text-decoration: underline;
+	color: #2596ff !important;
+}
+
+#enfermedades:hover{
+	color: black !important;
+}
