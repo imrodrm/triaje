@@ -14,6 +14,7 @@
     	
     	<!-- ARCHIVOS JS PROPIOS -->
     	<script src="${pageContext.request.contextPath}/resources/js/verEnfermedades.js"></script>
+    	<script src="${pageContext.request.contextPath}/resources/js/limpiarInputsEvaluacion.js"></script>
 	
 	    <!-- ARCHIVOS CSS PROPIOS -->
 	    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu_y_footer.css" />

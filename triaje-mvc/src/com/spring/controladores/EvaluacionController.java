@@ -174,7 +174,11 @@ public class EvaluacionController {
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
-		model.addAttribute("evaluacion", new Evaluacion());
+		Evaluacion ev = new Evaluacion();
+		//ev.setAltura(0.0);
+		//ev.setPeso(0.0);
+		//ev.setTemperatura(0.0);
+		model.addAttribute("evaluacion", ev);
 		return "nuevaEvaluacion";
 	}
 	
@@ -187,7 +191,7 @@ public class EvaluacionController {
 	 * @return el JSP 
 	 */
 	@PostMapping("/nuevaForm")
-	public String nuevaEvaluacion(@Valid Evaluacion ev, Model model) {
+	public String nuevaEvaluacion(Evaluacion ev, Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		Paciente p = (Paciente) sesion.getAttribute("paciente");
@@ -201,6 +205,7 @@ public class EvaluacionController {
 			return "redirect:/nueva";
 		}
 		ev.setPaciente(p);
+		ev.setEvaluador(logueado);
 		int i = p.getEvaluaciones().size() + 1;
 		ev.setId(p.getNSS() + "-" + Integer.toString(i));
 		sesion.removeAttribute("paciente");

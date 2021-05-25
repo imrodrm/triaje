@@ -73,7 +73,7 @@ public class Evaluacion {
 	@Min(32)
 	@Max(45)
 	@Column(name = "temperatura")
-	private double temperatura;
+	private Double temperatura;
 	
 	
 	/**
@@ -82,7 +82,7 @@ public class Evaluacion {
 	 * Su contraparte en la base de datos es el atributo peso
 	 */
 	@Column(name = "peso")
-	private double peso;
+	private Double peso;
 	
 	
 	/**
@@ -90,7 +90,7 @@ public class Evaluacion {
 	 * Su contraparte en la base de datos es el atributo altura
 	 */
 	@Column(name = "altura")
-	private double altura;
+	private Double altura;
 	
 	
 	/**
@@ -227,7 +227,7 @@ public class Evaluacion {
 	 * devuelve la temperatura del paciente en un momento dado
 	 * @return la temperatura del paciente para esta evaluación
 	 */
-	public double getTemperatura() {
+	public Double getTemperatura() {
 		return temperatura;
 	}
 
@@ -235,7 +235,7 @@ public class Evaluacion {
 	 * Modifica la temperatura del paciente para la evaluación
 	 * @param temperatura Nueva temperatura
 	 */
-	public void setTemperatura(double temperatura) {
+	public void setTemperatura(Double temperatura) {
 		this.temperatura = temperatura;
 	}
 
@@ -243,7 +243,7 @@ public class Evaluacion {
 	 * Devuelve el peso del paciente para la evaluación
 	 * @return el peso del paciente para esta evaluación
 	 */
-	public double getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
@@ -251,7 +251,7 @@ public class Evaluacion {
 	 * Modifica el peso del paciente para la evaluación
 	 * @param peso Nuevo peso
 	 */
-	public void setPeso(double peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -259,7 +259,7 @@ public class Evaluacion {
 	 * Devuelve la altura del paciente para la evaluación
 	 * @return la altura del paciente para esta evaluación
 	 */
-	public double getAltura() {
+	public Double getAltura() {
 		return altura;
 	}
 
@@ -267,7 +267,7 @@ public class Evaluacion {
 	 * Modifica la altura del paciente para la evaluación
 	 * @param altura Nueva altura
 	 */
-	public void setAltura(double altura) {
+	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
 
