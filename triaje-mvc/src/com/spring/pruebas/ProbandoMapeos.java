@@ -1,10 +1,12 @@
 package com.spring.pruebas;
 
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -84,6 +86,24 @@ public class ProbandoMapeos {
 				System.out.println(pu.getId());
 			}
 	*/		
+			//ZoneId zoneid = ZoneId.of("Europe/Spain");
+			LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());
+			LocalDateTime startofDay = localDateTime.with(LocalTime.MIN);
+			Date date = Date.from(startofDay.atZone(ZoneId.systemDefault()).toInstant());
+			System.out.println(date);
+		
+			
+			Query<Evaluacion> query = sesion.createQuery("FROM Evaluacion WHERE fecha >= :date ORDER BY prioridad",
+					Evaluacion.class);
+			query.setParameter("date", date);
+
+			List<Evaluacion> evaluaciones = query.getResultList();
+			for(Evaluacion ev: evaluaciones){
+				System.out.println(ev.getId());
+			}
+			
+			
+			
 	/*
 			Date d = new GregorianCalendar(2021, Calendar.APRIL, 1).getTime();
 			Query<Evaluacion> query = sesion.createQuery("FROM Evaluacion WHERE fecha >= :date ORDER BY prioridad", Evaluacion.class);
@@ -123,7 +143,8 @@ public class ProbandoMapeos {
 				System.out.println(df.format(p.getF_nac()));
 			}
 			
-	*/		
+	*/
+	/*
 			String nombre = "Pepa Pérez Rodríguez";
 			Calendar c = Calendar.getInstance();
 			c.set(1976, 6, 6, 0, 0, 0);
@@ -140,7 +161,7 @@ public class ProbandoMapeos {
 			for(Paciente pp: pacientes) {
 				System.out.println(pp);
 			}
-			
+	*/
 	/*
 			String nss = "ABd1235";
 			

@@ -148,7 +148,7 @@ public class EvaluacionDAOImplementacion implements EvaluacionDAO {
 	@Override
 	public List<Evaluacion> getEvaluacionesAPartirFecha(Date d) {
 		Session sesion = factoria.getCurrentSession();
-
+		
 		Query<Evaluacion> query = sesion.createQuery("FROM Evaluacion WHERE fecha >= :date ORDER BY prioridad",
 				Evaluacion.class);
 		query.setParameter("date", d);

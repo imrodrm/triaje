@@ -1,10 +1,13 @@
 package com.spring.controladores;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -229,6 +232,49 @@ public class EvaluacionController {
 			}
 			Gson g = new Gson();
 			String json = g.toJson(nombres);
+			return json;
+		}
+		return null;
+	}
+	
+	//A PARTIR DE AQUÍ SON LOS MÉTODOS PARA MOSTRAR EVALUACIONES, NO PARA HACERLAS
+	@GetMapping("/verHoy")
+	public String verEvaluacionesHoy(Model model) {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession sesion = attr.getRequest().getSession(true);
+		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
+		if(logueado == null) {
+			//Añadimos el PersonalUrgenciasLogin al modelo
+			model.addAttribute("login", new PersonalUrgenciasLogin());
+			return "redirect:/";
+		}
+		
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());
+		LocalDateTime startofDay = localDateTime.with(LocalTime.MIN);
+		Date date = Date.from(startofDay.atZone(ZoneId.systemDefault()).toInstant());	
+		
+		List<Evaluacion> evaluaciones = this.service.getEvaluacionesAPartirFecha(date);
+		for(Evaluacion ev: evaluaciones) {
+			System.out.println(ev.getId());
+		}
+		//sesion.setAttribute("evaluaciones", evaluaciones);
+		model.addAttribute("evaluaciones", evaluaciones);
+		
+		return "verEvaluaciones";
+	}
+	
+	/**
+	 * Método creado para AJAX en el que, con una cadena que corresponde al nombre, devuelve un JSON formado por los nombres y los domicilios de los pacientes
+	 * @param nombre del pacietne para buscar en la BD
+	 * @return JSON
+	 */
+	@PostMapping("/verDolencia")
+	public @ResponseBody String verDolencia(@RequestParam("id") String id) {
+		System.out.println(id);
+		if(id!=null && id!="") {
+			Evaluacion eval = this.service.getEvaluacionPorId(id);
+			Gson g = new Gson();
+			String json = g.toJson(eval.getDolencia());
 			return json;
 		}
 		return null;

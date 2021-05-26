@@ -64,7 +64,7 @@
             ></a>
             <ul class="dropdown-menu bg-primary">
               <li class="nav-item-dropdown">
-                <a class="nav-link text-center" href="#">Listado de hoy</a>
+               <a class="nav-link text-center" href="${pageContext.request.contextPath}/evaluacion/verHoy">Listado de hoy</a>
               </li>
               <li class="nav-item-dropdown">
                 <a class="nav-link text-center" href="#">Últimas 4 horas</a>

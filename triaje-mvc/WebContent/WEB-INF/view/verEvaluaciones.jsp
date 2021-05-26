@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,9 +17,9 @@
 
     <!--jQuery y DataTables-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/js/mostrarDataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/js/mostrarDataTable.js"></script>
 
 
     <title>Triaje - Salud</title>
@@ -27,7 +28,7 @@
     <!--BARRA DE NAVEGACIÓN SUPERIOR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <!--logo de la aplicación-->
-      <a href="${pageContext.request.contextPath}/resources" class="navbar-brand">
+      <a href="${pageContext.request.contextPath}/" class="navbar-brand">
         <img
           class="d-inline-block align-text-bottom"
           alt="Logo de la aplicación"
@@ -63,7 +64,7 @@
 
             <ul class="dropdown-menu bg-primary">
               <li class="nav-item-dropdown">
-                <a class="nav-link text-center" href="#">Listado de hoy</a>
+                <a class="nav-link text-center" href="${pageContext.request.contextPath}/evaluacion/verHoy">Listado de hoy</a>
               </li>
               <li class="nav-item-dropdown">
                 <a class="nav-link text-center" href="#">Últimas 4 horas</a>
@@ -86,7 +87,7 @@
           <li class="nav-item">
             <a href="/cerrarSesion" class="nav-link" id="nuevaEvaluacion">
               <img
-                src="/img/cerrarsesion.png"
+                src="${pageContext.request.contextPath}/resources/img/cerrarsesion.png"
                 alt="Cerrar sesión"
                 class="py-10 px-10 h-100"
                 id="cerrarsesion"
@@ -98,9 +99,10 @@
       </div>
     </nav>
     <div class="py-5 px-5 todo">
-      <table id="tablaEvaluaciones" class="display">
+      <table id="tablaEvaluaciones" class="display" width="100%">
           <thead>
               <tr>
+              	  <th></th>
                   <th>Id evaluación</th>
                   <th>Fecha y hora</th>
                   <th>ID evaluador</th>
@@ -109,88 +111,37 @@
                   <th>Temperatura</th>
                   <th>Altura</th>
                   <th>Peso</th>
-                  <th></th>
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <th>AB123458901235-1</th>
-                  <th>2021-03-02 10:35:42</th>
-                  <th>1</th>
-                  <th>Ermenegildo Rupérez</th>
-                  <th>5</th>
-                  <th>36.5</th>
-                  <th>1.61</th>
-                  <th>60</th>
-                  <th>Ver dolencia</th>
-              </tr>
-              <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
-            <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
-            <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
-            <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
-            <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
-            <tr>
-                <th>AB123458901235-1</th>
-                <th>2021-03-02 10:35:42</th>
-                <th>1</th>
-                <th>Ermenegildo Rupérez</th>
-                <th>5</th>
-                <th>36.5</th>
-                <th>1.61</th>
-                <th>60</th>
-                <th>Ver dolencia</th>
-            </tr>
+          	<c:forEach items="${evaluaciones}" var="evaluacion">
+          		<tr>
+          			<td>${evaluacion.fecha}</td>
+          			<td>${evaluacion.id}</td>
+          			<td>${evaluacion.fecha}</td>
+          			<td>${evaluacion.evaluador.id}</td>
+          			<td>${evaluacion.paciente.nombre}</td>
+          			<td>${evaluacion.prioridad}</td>
+          			<td>${(evaluacion.temperatura eq null ? '-' : evaluacion.temperatura)}</td>
+          			<td>${(evaluacion.altura eq null ? '-' : evaluacion.altura)}</td>
+          			<td>${(evaluacion.peso eq null ? '-' : evaluacion.peso)}</td>
+          		</tr>
+          	</c:forEach>
+
           </tbody>
+          <tfoot>
+          	<tr>
+              	  <th></th>
+                  <th>Id evaluación</th>
+                  <th>Fecha y hora</th>
+                  <th>ID evaluador</th>
+                  <th>Nombre del Paciente</th>
+                  <th>Prioridad</th>
+                  <th>Temperatura</th>
+                  <th>Altura</th>
+                  <th>Peso</th> 
+              </tr>
+          </tfoot>
       </table>
     </div>
     <!-- PIE DE PÁGINA -->
