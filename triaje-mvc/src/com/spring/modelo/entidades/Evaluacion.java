@@ -45,7 +45,7 @@ public class Evaluacion {
 	 * Su contraparte en la base de datos es el atributo fecha
 	 */
 	@PastOrPresent
-	@Column(name = "fecha", insertable = false)
+	@Column(name = "fecha")
 	private Date fecha;
 	
 	

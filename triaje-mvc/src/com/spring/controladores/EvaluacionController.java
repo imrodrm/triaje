@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -209,6 +210,10 @@ public class EvaluacionController {
 		}
 		ev.setPaciente(p);
 		ev.setEvaluador(logueado);
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.HOUR, -2);
+		Date dosHoras = cal.getTime();
+		ev.setFecha(new Date());
 		int i = p.getEvaluaciones().size() + 1;
 		ev.setId(p.getNSS() + "-" + Integer.toString(i));
 		sesion.removeAttribute("paciente");
@@ -279,4 +284,29 @@ public class EvaluacionController {
 		}
 		return null;
 	}
+	
+	//A PARTIR DE AQUÍ SON LOS MÉTODOS PARA MOSTRAR EVALUACIONES, NO PARA HACERLAS
+		@GetMapping("/verUltimasCuatroHoras")
+		public String verEvaluacionesUltimasCuatroHoras(Model model) {
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession sesion = attr.getRequest().getSession(true);
+			PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
+			if(logueado == null) {
+				//Añadimos el PersonalUrgenciasLogin al modelo
+				model.addAttribute("login", new PersonalUrgenciasLogin());
+				return "redirect:/";
+			}
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.HOUR, -4);
+			Date cuatroHoras = cal.getTime();
+			System.out.println(cuatroHoras);
+			List<Evaluacion> evaluaciones = this.service.getEvaluacionesAPartirFecha(cuatroHoras);
+			for(Evaluacion ev: evaluaciones) {
+				System.out.println(ev.getId());
+			}
+			//sesion.setAttribute("evaluaciones", evaluaciones);
+			model.addAttribute("evaluaciones", evaluaciones);
+			
+			return "verEvaluaciones";
+		}
 }

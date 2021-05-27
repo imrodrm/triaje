@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<!-- PIE DE PÁGINA -->
-    	<footer class="text-center bg-primary text-white">
+    	<footer class="fixed-bottom text-center bg-primary text-white">
     		<div class="container">
       			<p class="mx-1 py-3">
        				2021. Aplicación web para la realización de evaluaciones de triajes en

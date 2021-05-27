@@ -64,10 +64,10 @@
 
             <ul class="dropdown-menu bg-primary">
               <li class="nav-item-dropdown">
-                <a class="nav-link text-center" href="${pageContext.request.contextPath}/evaluacion/verHoy">Listado de hoy</a>
+                <a class="nav-link text-center" href="verHoy">Listado de hoy</a>
               </li>
               <li class="nav-item-dropdown">
-                <a class="nav-link text-center" href="#">Últimas 4 horas</a>
+                <a class="nav-link text-center" href="verUltimasCuatroHoras">Últimas 4 horas</a>
               </li>
             </ul>
           </li>
@@ -78,14 +78,14 @@
 
         <ul class="navbar-nav ml-md-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link" id="nuevaEvaluacion"
+            <a href="nueva" class="nav-link" id="nuevaEvaluacion"
               >NUEVA EVALUACIÓN</a
             >
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="/cerrarSesion" class="nav-link" id="nuevaEvaluacion">
+            <a href="../cerrarSesion" class="nav-link" id="nuevaEvaluacion">
               <img
                 src="${pageContext.request.contextPath}/resources/img/cerrarsesion.png"
                 alt="Cerrar sesión"
