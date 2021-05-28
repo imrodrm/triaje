@@ -35,49 +35,48 @@ import com.spring.modelo.servicios.ServicioPaciente;
 @Controller
 @RequestMapping("/evaluacion")
 public class EvaluacionController {
-	
+
 	private ServicioEvaluacion service;
-	
+
 	private ServicioPaciente servicePaciente;
-	
+
 	@Autowired
 	public void setServicioEvaluacion(ServicioEvaluacion service) {
 		this.service = service;
 	}
-	
+
 	@Autowired
 	public void setServicioPaciente(ServicioPaciente service) {
 		this.servicePaciente = service;
 	}
-	
-	
+
 	/**
-	 * Método para empezar la evaluación.
-	 * Si no estamos logueados, nos lleva a la página de loguear
-	 * Si estamos logueados, devuelve el JSP para rellenar el NSS
+	 * Método para empezar la evaluación. Si no estamos logueados, nos lleva a la
+	 * página de loguear Si estamos logueados, devuelve el JSP para rellenar el NSS
+	 * 
 	 * @param model
-	 * @return el JSP 
+	 * @return el JSP
 	 */
 	@GetMapping("/nueva")
 	public String getPacienteNSS(Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
 		model.addAttribute("paciente", new Paciente());
 		return "nuevaEvaluacionPaciente";
 	}
-	
-	
+
 	/**
-	 * Método que procesa el formulario en el que metemos el NSS del Paciente
-	 * Si está bien, pasamos al formulario de la evaluación
-	 * Si no, volvemos al formulario del NSS
-	 * @param p Paciente con NSS
+	 * Método que procesa el formulario en el que metemos el NSS del Paciente Si
+	 * está bien, pasamos al formulario de la evaluación Si no, volvemos al
+	 * formulario del NSS
+	 * 
+	 * @param p     Paciente con NSS
 	 * @param model
 	 * @return el JSP al que redirige
 	 */
@@ -86,16 +85,16 @@ public class EvaluacionController {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
 		System.out.println(p.getNSS());
-		
-		if(p != null && p.getNSS() != null && p.getNSS() != "") {
+
+		if (p != null && p.getNSS() != null && p.getNSS() != "") {
 			Paciente pbd = this.servicePaciente.getPacientePorNSS(p.getNSS());
-			if(pbd != null) {
+			if (pbd != null) {
 				sesion.removeAttribute("errores");
 				sesion.setAttribute("paciente", pbd);
 				return "redirect:/evaluacion/nuevaForm";
@@ -105,52 +104,55 @@ public class EvaluacionController {
 		}
 		return "nuevaEvaluacionPaciente";
 	}
-	
-	
+
 	/**
-	 * Método para empezar la evaluación.
-	 * Si no estamos logueados, nos lleva a la página de loguear
-	 * Si estamos logueados, devuelve el JSP para rellenar el Nombre del Paciente
+	 * Método para empezar la evaluación. Si no estamos logueados, nos lleva a la
+	 * página de loguear Si estamos logueados, devuelve el JSP para rellenar el
+	 * Nombre del Paciente
+	 * 
 	 * @param model
-	 * @return el JSP 
+	 * @return el JSP
 	 */
 	@GetMapping("/nuevaNombre")
 	public String getPacienteNombreYDomicilio(Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
 		model.addAttribute("paciente", new PacienteBusquedaNombreYDomicilio());
 		return "nuevaEvaluacionPacienteNombre";
 	}
-	
+
 	/**
-	 * Método que procesa el formulario en el que metemos el nombre y el domicilio del Paciente
-	 * Si está bien, pasamos al formulario de la evaluación
-	 * Si no, volvemos al formulario del nombre y el domicilio
-	 * @param p PacienteBusquedaNombreYDomicilio
+	 * Método que procesa el formulario en el que metemos el nombre y el domicilio
+	 * del Paciente Si está bien, pasamos al formulario de la evaluación Si no,
+	 * volvemos al formulario del nombre y el domicilio
+	 * 
+	 * @param p     PacienteBusquedaNombreYDomicilio
 	 * @param model
 	 * @return el JSP al que redirige
 	 */
 	@PostMapping("/nuevaNombre")
-	public String postPacienteNombreYDomicilio(@ModelAttribute("paciente") PacienteBusquedaNombreYDomicilio p, Model model) {
+	public String postPacienteNombreYDomicilio(@ModelAttribute("paciente") PacienteBusquedaNombreYDomicilio p,
+			Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
-		if(p != null && p.getNombre() != null && p.getNombre() != "" && p.getDomicilio() != null && p.getDomicilio() != "") {
+		if (p != null && p.getNombre() != null && p.getNombre() != "" && p.getDomicilio() != null
+				&& p.getDomicilio() != "") {
 			System.out.println(p.getNombre());
 			System.out.println(p.getDomicilio());
 			List<Paciente> pbd = this.servicePaciente.getPacientePorNombreYDomicilio(p.getNombre(), p.getDomicilio());
-			if(pbd.size() > 0) {
+			if (pbd.size() > 0) {
 				sesion.removeAttribute("errores");
 				sesion.setAttribute("paciente", pbd.get(0));
 				return "redirect:/evaluacion/nuevaForm";
@@ -160,39 +162,41 @@ public class EvaluacionController {
 		}
 		return "nuevaEvaluacionPacienteNombre";
 	}
-	
+
 	/**
-	 * Método para seguir la evaluación una vez ya tenemos el paciente.
-	 * Si no estamos logueados, nos lleva a la página de loguear
-	 * Si estamos logueados, devuelve el JSP para rellenar el formulario de la evaluación
+	 * Método para seguir la evaluación una vez ya tenemos el paciente. Si no
+	 * estamos logueados, nos lleva a la página de loguear Si estamos logueados,
+	 * devuelve el JSP para rellenar el formulario de la evaluación
+	 * 
 	 * @param model
-	 * @return el JSP 
+	 * @return el JSP
 	 */
 	@GetMapping("/nuevaForm")
 	public String evaluacionForm(Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
 		Evaluacion ev = new Evaluacion();
-		//ev.setAltura(0.0);
-		//ev.setPeso(0.0);
-		//ev.setTemperatura(0.0);
+		// ev.setAltura(0.0);
+		// ev.setPeso(0.0);
+		// ev.setTemperatura(0.0);
 		model.addAttribute("evaluacion", ev);
 		return "nuevaEvaluacion";
 	}
-	
+
 	/**
-	 * Método para procesar la evaluación.
-	 * Si no estamos logueados, nos lleva a la página de loguear
-	 * Si no hay un paciente introducido, nos lleva a la página de introducir un paciente
-	 * Si estamos logueados, procesa la evaluación y nos lleva al índice
+	 * Método para procesar la evaluación. Si no estamos logueados, nos lleva a la
+	 * página de loguear Si no hay un paciente introducido, nos lleva a la página de
+	 * introducir un paciente Si estamos logueados, procesa la evaluación y nos
+	 * lleva al índice
+	 * 
 	 * @param model
-	 * @return el JSP 
+	 * @return el JSP
 	 */
 	@PostMapping("/nuevaForm")
 	public String nuevaEvaluacion(Evaluacion ev, Model model) {
@@ -200,12 +204,12 @@ public class EvaluacionController {
 		HttpSession sesion = attr.getRequest().getSession(true);
 		Paciente p = (Paciente) sesion.getAttribute("paciente");
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
-		if (p==null) {
+		if (p == null) {
 			return "redirect:/nueva";
 		}
 		ev.setPaciente(p);
@@ -220,19 +224,21 @@ public class EvaluacionController {
 		this.service.saveEvaluacion(ev);
 		return "redirect:/";
 	}
-	
+
 	/**
-	 * Método creado para AJAX en el que, con una cadena que corresponde al nombre, devuelve un JSON formado por los nombres y los domicilios de los pacientes
+	 * Método creado para AJAX en el que, con una cadena que corresponde al nombre,
+	 * devuelve un JSON formado por los nombres y los domicilios de los pacientes
+	 * 
 	 * @param nombre del pacietne para buscar en la BD
 	 * @return JSON
 	 */
 	@PostMapping("/buscarPacientes")
 	public @ResponseBody String buscarPacientes(@RequestParam("nombre") String nombre) {
 		System.out.println(nombre);
-		if(nombre!=null && nombre!="") {
+		if (nombre != null && nombre != "") {
 			List<Paciente> pacientes = this.servicePaciente.getPacientesPorNombreOApellido(nombre);
 			List<String> nombres = new ArrayList<String>();
-			for(Paciente p: pacientes) {
+			for (Paciente p : pacientes) {
 				nombres.add(p.getNombre() + "-" + p.getDomicilio());
 			}
 			Gson g = new Gson();
@@ -241,42 +247,44 @@ public class EvaluacionController {
 		}
 		return null;
 	}
-	
-	//A PARTIR DE AQUÍ SON LOS MÉTODOS PARA MOSTRAR EVALUACIONES, NO PARA HACERLAS
+
+	// A PARTIR DE AQUÍ SON LOS MÉTODOS PARA MOSTRAR EVALUACIONES, NO PARA HACERLAS
 	@GetMapping("/verHoy")
 	public String verEvaluacionesHoy(Model model) {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession sesion = attr.getRequest().getSession(true);
 		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-		if(logueado == null) {
-			//Añadimos el PersonalUrgenciasLogin al modelo
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
 			model.addAttribute("login", new PersonalUrgenciasLogin());
 			return "redirect:/";
 		}
-		
+
 		LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());
 		LocalDateTime startofDay = localDateTime.with(LocalTime.MIN);
-		Date date = Date.from(startofDay.atZone(ZoneId.systemDefault()).toInstant());	
-		
+		Date date = Date.from(startofDay.atZone(ZoneId.systemDefault()).toInstant());
+
 		List<Evaluacion> evaluaciones = this.service.getEvaluacionesAPartirFecha(date);
-		for(Evaluacion ev: evaluaciones) {
+		for (Evaluacion ev : evaluaciones) {
 			System.out.println(ev.getId());
 		}
-		//sesion.setAttribute("evaluaciones", evaluaciones);
+		// sesion.setAttribute("evaluaciones", evaluaciones);
 		model.addAttribute("evaluaciones", evaluaciones);
-		
+
 		return "verEvaluaciones";
 	}
-	
+
 	/**
-	 * Método creado para AJAX en el que, con una cadena que corresponde al nombre, devuelve un JSON formado por los nombres y los domicilios de los pacientes
+	 * Método creado para AJAX en el que, con una cadena que corresponde al nombre,
+	 * devuelve un JSON formado por los nombres y los domicilios de los pacientes
+	 * 
 	 * @param nombre del pacietne para buscar en la BD
 	 * @return JSON
 	 */
 	@PostMapping("/verDolencia")
 	public @ResponseBody String verDolencia(@RequestParam("id") String id) {
 		System.out.println(id);
-		if(id!=null && id!="") {
+		if (id != null && id != "") {
 			Evaluacion eval = this.service.getEvaluacionPorId(id);
 			Gson g = new Gson();
 			String json = g.toJson(eval.getDolencia());
@@ -284,29 +292,44 @@ public class EvaluacionController {
 		}
 		return null;
 	}
-	
-	//A PARTIR DE AQUÍ SON LOS MÉTODOS PARA MOSTRAR EVALUACIONES, NO PARA HACERLAS
-		@GetMapping("/verUltimasCuatroHoras")
-		public String verEvaluacionesUltimasCuatroHoras(Model model) {
-			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-			HttpSession sesion = attr.getRequest().getSession(true);
-			PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
-			if(logueado == null) {
-				//Añadimos el PersonalUrgenciasLogin al modelo
-				model.addAttribute("login", new PersonalUrgenciasLogin());
-				return "redirect:/";
-			}
-			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.HOUR, -4);
-			Date cuatroHoras = cal.getTime();
-			System.out.println(cuatroHoras);
-			List<Evaluacion> evaluaciones = this.service.getEvaluacionesAPartirFecha(cuatroHoras);
-			for(Evaluacion ev: evaluaciones) {
-				System.out.println(ev.getId());
-			}
-			//sesion.setAttribute("evaluaciones", evaluaciones);
-			model.addAttribute("evaluaciones", evaluaciones);
-			
-			return "verEvaluaciones";
+
+	@GetMapping("/verUltimasCuatroHoras")
+	public String verEvaluacionesUltimasCuatroHoras(Model model) {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession sesion = attr.getRequest().getSession(true);
+		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
+			model.addAttribute("login", new PersonalUrgenciasLogin());
+			return "redirect:/";
 		}
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.HOUR, -4);
+		Date cuatroHoras = cal.getTime();
+		System.out.println(cuatroHoras);
+		List<Evaluacion> evaluaciones = this.service.getEvaluacionesAPartirFecha(cuatroHoras);
+		for (Evaluacion ev : evaluaciones) {
+			System.out.println(ev.getId());
+		}
+		// sesion.setAttribute("evaluaciones", evaluaciones);
+		model.addAttribute("evaluaciones", evaluaciones);
+
+		return "verEvaluaciones";
+	}
+	
+	@GetMapping("/verTodas")
+	public String verTodas(Model model) {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession sesion = attr.getRequest().getSession(true);
+		PersonalUrgencias logueado = (PersonalUrgencias) sesion.getAttribute("logueado");
+		if (logueado == null) {
+			// Añadimos el PersonalUrgenciasLogin al modelo
+			model.addAttribute("login", new PersonalUrgenciasLogin());
+			return "redirect:/";
+		}
+		List<Evaluacion> evaluaciones = this.service.getEvaluaciones();
+		model.addAttribute("evaluaciones", evaluaciones);
+
+		return "verEvaluaciones";
+	}
 }

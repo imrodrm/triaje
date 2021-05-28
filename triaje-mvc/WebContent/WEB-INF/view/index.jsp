@@ -61,10 +61,13 @@
               				<li class="nav-item-dropdown">
 		                		<a class="nav-link text-center" href="evaluacion/verUltimasCuatroHoras">Últimas 4 horas</a>
               				</li>
+              				<li class="nav-item-dropdown">
+		                		<a class="nav-link text-center" href="evaluacion/verTodas">Ver todas</a>
+              				</li>
             			</ul>
           			</li>
           			<li class="nav-item">
-		            	<a href="#" class="nav-link">Listado de pacientes</a>
+		            	<a href="paciente/verTodos" class="nav-link">Listado de pacientes</a>
     	    		</li>
         		</ul>
 
@@ -99,7 +102,7 @@
               				<p class="card-text">Visualiza las evaluaciones recientes.</p>
             			</div>
             			<div class="card-footer">
-              				<a href="#" class="stretched-link btn btn-primary">Ver</a>
+              				<a href="evaluacion/verUltimasCuatroHoras" class="stretched-link btn btn-primary">Ver</a>
             			</div>
           			</div>
         		</article>
@@ -112,7 +115,7 @@
               				<p class="card-text">Visualiza los pacientes.</p>
             			</div>
             			<div class="card-footer">
-              				<a href="#" class="btn btn-primary">Ver</a>
+              				<a href="paciente/verTodos" class="btn btn-primary">Ver</a>
             			</div>
           			</div>
         		</article>
@@ -125,7 +128,7 @@
               				<p class="card-text">Visualiza las enfermedades.</p>
             			</div>
             			<div class="card-footer">
-              				<a href="#" class="btn btn-primary">Ver</a>
+              				<a href="enfermedad/verTodas" class="btn btn-primary">Ver</a>
             			</div>
           			</div>
         		</article>

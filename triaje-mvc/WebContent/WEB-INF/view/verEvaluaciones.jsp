@@ -69,10 +69,13 @@
               <li class="nav-item-dropdown">
                 <a class="nav-link text-center" href="verUltimasCuatroHoras">Últimas 4 horas</a>
               </li>
+              <li class="nav-item-dropdown">
+		         <a class="nav-link text-center" href="verTodas">Ver todas</a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Listado de pacientes</a>
+            <a href="../paciente/verTodos" class="nav-link">Listado de pacientes</a>
           </li>
         </ul>
 

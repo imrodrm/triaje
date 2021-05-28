@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body{
+    font-size: 1.2em !important;
+    font-family:sans-serif !important;
+}
+
 /*ESTILOS DE LA BARRA DE NAVEGACIÓN*/
 .bg-primary {
     background-color: #2596ff !important;
