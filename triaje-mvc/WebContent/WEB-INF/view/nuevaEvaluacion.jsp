@@ -150,6 +150,7 @@
           			</div>
           
 					<div class="form-group">
+						<!-- AQUÍ HAY QUE GRABAR EL AUDIO, SIGO MIRANDO COMO METER AMAZON LEX... -->
             			<label class="required" for="dolencia">Dolencia:</label>
             			<form:textarea id="dolencia" name="dolencia" path="dolencia" rows="5" cols="50" required="required" placeholder="¿De qué adolece el paciente?"/>
           			</div>
