@@ -101,6 +101,9 @@
         </ul>
       </div>
     </nav>
+     <div class="Bienvenidx pt-4 px-5">
+    	<p class="titulo">Evaluaciones de la aplicación.</p>
+    </div>
     <div class="py-5 px-5 todo">
       <table id="tablaEvaluaciones" class="display" width="100%">
           <thead>

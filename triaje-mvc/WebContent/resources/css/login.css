@@ -3,10 +3,15 @@
 /*ESTILOS DE LA BARRA DE NAVEGACIÓN*/
 html, body{ 
     margin: 0; 
-    } 
+} 
 
 .bg-primary {
     background-color: #2596ff !important;
+}
+
+.formularioContainer{
+	background-color: #e1f4ff;
+	border: 0px !important;
 }
 
 .navbar {
@@ -63,6 +68,8 @@ footer {
     margin: auto;
     margin-top: 100px;
     margin-bottom: 100px;
+    background-color: #e1f4ff;
+    border: 1px solid #6ac8ff;
 }
 
 .titulo{

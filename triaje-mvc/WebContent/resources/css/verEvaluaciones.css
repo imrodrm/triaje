@@ -9,3 +9,8 @@ tr.details td.details-control {
     background: url('../img/details_close.png') no-repeat center center;
     background-size: 47px 30px;
 }
+
+.titulo{
+	font-size:1.5em !important;
+	color: #2596ff !important;
+}

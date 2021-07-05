@@ -87,7 +87,7 @@
       		</div>
     	</nav>
     	<div class="Bienvenidx pt-4 px-5">
-    		<p class="bienvenida">Hola, ${login.nombre} ${login.apellidos}.
+    		<p class="bienvenida">Hola, ${login.nombre} ${login.apellidos}.</p>
     	</div>
     	<!-- Sección de las cartas, los py y px son para el padding -->
     	<section class="py-4 px-5">
