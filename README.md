@@ -1,3 +1,4 @@
+Español
 # Aplicación web de triaje
 #### Creada por Imanol Rodríguez como trabajo de fin de grado para la Universidad de La Rioja en la empresa Hiberus Osaba S.L.
 
@@ -8,6 +9,8 @@ La aplicación está conectada con una base de datos MySQL, hay dos scripts, uno
 Permite crear nuevas evaluaciones y visualizarlas, además de poder ver también los pacientes y las enfermedades. Toda la funcionalidad está protegida por usuario y contraseña.
 
 
+---
+Inglés
 # Triage web application
 #### Created by Imanol Rodríguez as a bachelor thesis in La Rioja's University while being in Hiberus Osaba S.L.
 
